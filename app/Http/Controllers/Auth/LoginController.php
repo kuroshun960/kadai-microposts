@@ -35,6 +35,10 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        //  middlewareはアクション実行まえ処理。
+        //  ゲストユーザーの場合、ログアウトアクションは除く
+        //  ゲストユーザーにだけ、ログイン/登録を実行する
+        
         $this->middleware('guest')->except('logout');
     }
 }

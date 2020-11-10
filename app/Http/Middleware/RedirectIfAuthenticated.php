@@ -6,6 +6,8 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+//guestの処理内容
+
 class RedirectIfAuthenticated
 {
     /**
@@ -18,6 +20,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        
+        //ログイン状況を判断
+        //ログイン済みなら、HOMEへリダイレクト
+        
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

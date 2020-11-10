@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+     //「一気に保存可能」なものをここで設定
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -24,6 +25,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+     //パスワードなど秘匿に表示したいものをここで設定
     protected $hidden = [
         'password', 'remember_token',
     ];
