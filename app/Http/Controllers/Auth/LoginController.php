@@ -19,6 +19,7 @@ class LoginController extends Controller
     |
     */
 
+    // このトレイトに、login.blade.phpを表示する処理などが元から書かれている。
     use AuthenticatesUsers;
 
     /**
