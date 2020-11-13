@@ -20,20 +20,21 @@
                     @if (Auth::check())
                     
                         {{-- ユーザー一覧ページへのリンク --}}
-                        <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+                        <li class="nav-item">{!! link_to_route('users.index', 'Users', [], ['class' => 'nav-link']) !!}</li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                             
-                            <ul class="dropdown-menu dropdown-menu-right">
-                            
-                                {{-- ユーザー詳細ページへのリンク --}}
-                                <li class="dropdown-item"><a href="#">My profile</a></li>
-                                <li class="dropdown-driver"></li>
+                                {{-- ドロップダウンメニュー --}}    
+                                <ul class="dropdown-menu dropdown-menu-right">
                                 
-                                {{-- ログアウトへのリンク --}}
-                                <li class="dropdown-item">{!! link_to_route('logout.get','Logout') !!}</li>
-                                
-                            </ul>
+                                    {{-- ユーザー詳細ページへのリンク --}}
+                                    <li class="dropdown-item"><a href="#">My profile</a></li>
+                                    <li class="dropdown-driver"></li>
+                                    
+                                    {{-- ログアウトへのリンク --}}
+                                    <li class="dropdown-item">{!! link_to_route('logout.get','Logout') !!}</li>
+                                    
+                                </ul>
                         </li>
                         
                         
