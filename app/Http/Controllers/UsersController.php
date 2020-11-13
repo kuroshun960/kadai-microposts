@@ -30,7 +30,7 @@ class UsersController extends Controller
         
         //ユーザ詳細ビューでそれを表示
         return view('users.show',[
-           'users' => $users, 
+           'user' => $users, 
             
         ]);
     }
