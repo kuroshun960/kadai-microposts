@@ -53,7 +53,6 @@ Route::get('/', function () {
     //  onryは、作成されるルートをindexとshowのみに絞り込んでいる。
     
     Route::group( ['middleware',['auth']],function(){
-        
         Route::resource('users','UsersController',['only'=>['index','show']]);
         
     });

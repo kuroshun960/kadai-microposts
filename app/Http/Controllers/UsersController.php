@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use APP\User;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -13,7 +13,7 @@ class UsersController extends Controller
     public function index(){
         
         //ユーザー一覧をidの降順で取得
-        $users = User::orderBy('id','desc')->pagination(10);
+        $users = User::orderBy('id','desc')->paginate(10);
         
         //変数userの中に↑を格納し、users/indexで表示
         return view('users.index',[
