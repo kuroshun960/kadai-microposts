@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="#nav-bar">
+        <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 
@@ -17,7 +17,7 @@
                 
                     {{-- Authには、認証にまつわる一連のメソッドがある --}}
                     {{-- ログイン済みのユーザーかどうかチェック --}}
-                    @if (Auth::check())
+                     @if (Auth::check())
                     
                         {{-- ユーザー一覧ページへのリンク --}}
                         <li class="nav-item">{!! link_to_route('users.index', 'Users', [], ['class' => 'nav-link']) !!}</li>
@@ -25,16 +25,13 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                             
                                 {{-- ドロップダウンメニュー --}}    
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                
-                                    {{-- ユーザー詳細ページへのリンク --}}
-                                    <li class="dropdown-item">{!! link_to_route('users.show', 'My profile', ['user' => Auth::id()]) !!}</li>
-                                    <li class="dropdown-driver"></li>
-                                    
-                                    {{-- ログアウトへのリンク --}}
-                                    <li class="dropdown-item">{!! link_to_route('logout.get','Logout') !!}</li>
-                                    
-                                </ul>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                {{-- ユーザ詳細ページへのリンク --}}
+                                <li class="dropdown-item">{!! link_to_route('users.show', 'My profile', ['user' => Auth::id()]) !!}</li>
+                                <li class="dropdown-divider"></li>
+                                {{-- ログアウトへのリンク --}}
+                                <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                            </ul>
                         </li>
                         
                         

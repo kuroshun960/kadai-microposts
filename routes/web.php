@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+// Route::get('/', function () {
+//    return view('welcome');
+// });
+
+
+Route::get('/', 'MicropostsController@index');
 
 
 // ユーザー登録機能のルート
@@ -47,12 +50,18 @@ Route::get('/', function () {
         
         
         
+        
+        
 // ユーザー一覧のルート
 
     //  ミドルウェア（前処理）でAuth(認証)を行う。認証を通過した者だけがこのルートにアクセスできる。
     //  onryは、作成されるルートをindexとshowのみに絞り込んでいる。
     
     Route::group( ['middleware',['auth']],function(){
+        
+        //indexとshowはmicropostsControllerではなく"userController"
         Route::resource('users','UsersController',['only'=>['index','show']]);
+        
+        Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
         
     });
