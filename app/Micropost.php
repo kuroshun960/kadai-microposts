@@ -13,15 +13,16 @@ class Micropost extends Model
     //単数系の"user"でメソッドを定義
     //ユーザーインスタンスに対して、複数の投稿のレコードが紐づく
     //この投稿を所有するユーザ。（ Userモデルとの関係を定義）
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     
     
     
     //このユーザに関係するモデルの件数をロードする。
-    public function loadRelationshipCounts(){
-        
+    public function loadRelationshipCounts()
+    {
         $this->loadCount('microposts');
     }
     

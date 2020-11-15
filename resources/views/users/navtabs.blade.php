@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs nav-justified mb-3">
+
+                
+    {{-- ユーザー詳細タブ --}}
+    <li class="nav-item">
+                    
+    {{-- routeIs　リクエスト元のルートがusers.showの場合、タブの文字がactiveになる。参考演算子。 --}}
+    <a href="{{ route('users.show', ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
+        TimeLine
+    <span class="bagde bagde-secondary">{{ $user->microposts_count }}</span>    
+    </a>
+    </li>
+    
+    {{-- フォロー一覧タブ --}}                    
+    <li class="nav-item">
+        <a href="{{ route('users.followings',['id'=> $user->id ])  }}" class="nav-link {{ Request::routeIs('users.followings') ? 'active' : '' }}">
+        Followings
+    <span class="bagde bagde-secondary">{{ $user->followings_count }}</span>        
+        </a>
+        </li>
+    
+    
+    {{-- フォロワー一覧タブ --}}
+    <li class="nav-item">
+        <a href="{{ route('users.followers',['id'=> $user->id ])  }}" class="nav-link {{ Request::routeIs('users.followers') ? 'active' : '' }}">
+        Followers
+    <span class="bagde bagde-secondary">{{ $user->followers_count }}</span>        
+        </a>
+        </li>
+</ul>

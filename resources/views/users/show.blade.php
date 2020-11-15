@@ -2,54 +2,22 @@
 @section('content')
     <div class="row">
         
-        
         <aside class="col-sm-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">{{ $user->name }}</h3>
-                </div>
-                <div class=card-body>
-                    {{-- ユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                    <img class="rounded img-fluid" src="{{ Gravatar::get($user->email,['size'=>500]) }}" alt="">
-                </div>
-            </div>
+            @include('users.card')
+            
+            {{-- フォロー／アンフォローボタン --}}
+            @include('user_follow.follow_button')
         </aside>
         
-        
-        
-        
-        
-        
-        
-        <div class="col-sm-8">
-            <ul class="nav nav-tab nav-justified mb-3">
-                
-                {{-- ユーザー詳細タブ --}}
-                <li class="nav-item">
-                    
-                    {{-- routeIs　リクエスト元のルートがusers.showの場合、タブの文字がactiveになる。参考演算子。 --}}
-                    <a href="{{ route('users.show', ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
-                        TimeLine
-                        <span class="bagde bagde-secondary">{{ $user->microposts_count }}</span>    
-                    </a>
-                </li>
-                        
-                <li class="nav-item"><a href="#" class="nav-link">Followings</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Followers</a></li>
 
-                
-            </ul>
-                    
+        <div class="col-sm-8">
+            @include('users.navtabs')
                 @if (Auth::id() == $user->id)
                     {{-- 投稿フォーム --}}
                     @include('microposts.form')
                 @endif
                     {{-- 投稿一覧 --}}
                     @include('microposts.microposts')    
-
         </div>
-        
-        
-        
     </div>
 @endsection

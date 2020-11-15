@@ -56,12 +56,27 @@ Route::get('/', 'MicropostsController@index');
 
     //  ミドルウェア（前処理）でAuth(認証)を行う。認証を通過した者だけがこのルートにアクセスできる。
     //  onryは、作成されるルートをindexとshowのみに絞り込んでいる。
+    //  prefixは、URLに特定の階層を付与する。
+    
     
     Route::group( ['middleware',['auth']],function(){
+        Route::group( ['prefix'=>'users/{id}'],function(){
+            
+            //フォローする
+            Route::post('follow', 'UserFollowController@store')->name('user.follow');
+            //フォローをはずす
+            Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
+            //フォロー一覧
+            Route::get('followings', 'UsersController@followings')->name('users.followings');
+            //フォロワー一覧
+            Route::get('followers', 'UsersController@followers')->name('users.followers');
+        });
         
         //indexとshowはmicropostsControllerではなく"userController"
         Route::resource('users','UsersController',['only'=>['index','show']]);
         
         Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
+        
+            
         
     });
