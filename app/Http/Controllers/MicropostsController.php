@@ -19,7 +19,7 @@ class MicropostsController extends Controller
          $user = \Auth::user();
         
         // 投稿内容を作成日時が新しい順で取得
-         $microposts = $user->microposts()->orderBy('created_at','desc')->paginate(10);
+         $microposts = $user->feed_microposts()->orderBy('created_at','desc')->paginate(10);
          
          $data = [
              'user' => $user,

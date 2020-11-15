@@ -4,9 +4,7 @@
         
         <aside class="col-sm-4">
             @include('users.card')
-            
-            {{-- フォロー／アンフォローボタン --}}
-            @include('user_follow.follow_button')
+
         </aside>
         
 

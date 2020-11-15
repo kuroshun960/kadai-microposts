@@ -6,15 +6,7 @@
         
             <div class="row">
                 <aside class="col-sm-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">{{ Auth::user()->name }}</h3>
-                        </div>
-                        {{-- 認証済みユーザのメールアドレスをもとにGravatarを取得して表示 --}}
-                        <div>
-                            <img class="rounded img-fluid" src="{{ Gravatar::get(Auth::user()->email, ['size' => 500]) }}" alt="" >
-                        </div>
-                    </div>
+                    @include('users.card')
                 </aside>
                 <div class="col-sm-8">
                 {{-- 投稿フォーム --}}
