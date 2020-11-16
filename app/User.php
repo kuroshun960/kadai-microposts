@@ -41,12 +41,10 @@ class User extends Authenticatable
     
     
     //このユーザが所有する投稿。（ Micropostモデルとの関係を定義）
-    
         public function microposts(){
         return $this->hasMany(Micropost::class);
     }
 
-    
         public function loadRelationshipCounts(){
             $this->loadCount('microposts');
         }
@@ -131,6 +129,21 @@ class User extends Authenticatable
             return Micropost::whereIn('user_id',$userIds);
         
         }
+        
+        
+        //このユーザが所有する投稿。（ Micropostモデルとの関係を定義）
+        public function favoritesNow(){
+        return $this->hasMany(Micropost::class);
+        }
+
+        public function favoritesNowCounts(){
+            $this->loadCount('favoritesNow');
+        }
+        
+        
+        
+        
+        
         
 }
 

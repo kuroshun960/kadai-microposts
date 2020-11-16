@@ -27,6 +27,8 @@ class CreateMicropostsTable extends Migration
             
             // 外部キー制約(データベース側の機能)
             //ユーザーと投稿に「つながり」をもたせて、整合性をもたせる
+            
+            //（外部キーを設定するカラム）（参照先のカラム）（参照先のテーブル）(デリート時)
             $table->foreign('user_id')->references('id')->on('users');
             
             
