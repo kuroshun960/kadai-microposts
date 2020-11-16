@@ -70,6 +70,18 @@ Route::get('/', 'MicropostsController@index');
             Route::get('followings', 'UsersController@followings')->name('users.followings');
             //フォロワー一覧
             Route::get('followers', 'UsersController@followers')->name('users.followers');
+            
+            
+            //お気に入りする
+            Route::post('favoriting', 'FavoritesController@store')->name('post.favoriting');
+            //お気に入りはずす
+            Route::delete('unfavoriting', 'FavoritesFollowController@destroy')->name('post.unfavoriting');
+            //お気に入り一覧
+            Route::get('favoritesPost', 'FavoritesController@followings')->name('post.favoritesPost');
+            //お気に入りられ一覧
+            Route::get('favoritesPost', 'FavoritesController@followers')->name('post.favoritesPost');
+            
+            
         });
         
         //indexとshowはmicropostsControllerではなく"userController"
