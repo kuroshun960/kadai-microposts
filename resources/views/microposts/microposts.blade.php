@@ -17,6 +17,8 @@
                     <p class="mb-0">{!! nl2br(e($micropost->content)) !!}</p>
                 </div>
                 
+                <div></div>
+                
                 <div>
                     {{-- 閲覧者が投稿主なら --}}
                     @if(Auth::id() == $micropost->user_id)
@@ -24,6 +26,23 @@
                         {!! Form::open(['route'=>['microposts.destroy',$micropost->id],'method' => 'delete' ]) !!}
                             {!! Form::submit('Delete',['class'=>'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
+                    @endif
+                </div>
+                
+                <div>
+                    @if(Auth::id() != $user->id)
+                        {{--フォロー中のユーザーだったら--}}
+                        @if (Auth::user()->is_favoriting($user->id))
+                            {{-- アンフォローボタンのフォーム --}}
+                                {!! Form::open(['route' => ['favorites.unfavorite', $user->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('Unfavorite', ['class' => "btn btn-danger btn-block"]) !!}
+                                {!! Form::close() !!}
+                        @else
+                            {{-- フォローボタンのフォーム --}}
+                                {!! Form::open(['route' => ['favorites.favorite', $user->id]]) !!}
+                                    {!! Form::submit('Favorite', ['class' => "btn btn-primary btn-block"]) !!}
+                                {!! Form::close() !!}
+                        @endif
                     @endif
                 </div>
                 

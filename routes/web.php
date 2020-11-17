@@ -71,24 +71,27 @@ Route::get('/', 'MicropostsController@index');
             //フォロワー一覧
             Route::get('followers', 'UsersController@followers')->name('users.followers');
             
-            
-            //お気に入りする
-            Route::post('favoriting', 'FavoritesController@store')->name('post.favoriting');
-            //お気に入りはずす
-            Route::delete('unfavoriting', 'FavoritesFollowController@destroy')->name('post.unfavoriting');
             //お気に入り一覧
-            Route::get('favoritesPost', 'FavoritesController@followings')->name('post.favoritesPost');
-            //お気に入りられ一覧
-            Route::get('favoritesPost', 'FavoritesController@followers')->name('post.favoritesPost');
+            Route::get('favoritesPost', 'UsersController@favoritesPost')->name('users.favoritesPost');
             
             
         });
+
         
         //indexとshowはmicropostsControllerではなく"userController"
         Route::resource('users','UsersController',['only'=>['index','show']]);
         
+        
+        Route::group(['prefix' => 'microposts/{id}'], function () {
+        
+            //お気に入りする
+            Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+            //お気に入りはずす
+            Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+        });
+        
+        
         Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
         
-            
-        
+
     });

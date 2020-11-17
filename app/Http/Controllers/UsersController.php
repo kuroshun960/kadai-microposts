@@ -87,4 +87,30 @@ class UsersController extends Controller
         
     }
     
+    
+    
+    //ユーザのお気に入り投稿一覧ページを表示するアクション。
+    
+    public function favoritesPost($id){
+        
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+        
+        // 関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+        
+        // ユーザのフォロー一覧を取得
+        $favoritesPost = $user->favoritesPost()->paginate(8);
+        
+        // フォロー一覧ビューでそれらを表示
+        return view('users.favoritesPost',[
+            'user' => $user,
+            'users' => $favoritesPost,
+            
+            ]);
+        
+    }
+    
+    
+    
 }

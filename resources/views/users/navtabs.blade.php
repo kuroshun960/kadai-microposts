@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs nav-justified mb-3">
+            <ul class="nav nav-tabs nav-justified mb-3">
 
                 
     {{-- ユーザー詳細タブ --}}
@@ -27,4 +27,14 @@
     <span class="bagde bagde-secondary">{{ $user->followers_count }}</span>        
         </a>
         </li>
+        
+    {{-- お気に入り一覧タブ --}}                    
+    <li class="nav-item">
+        <a href="{{ route('users.favoritesPost',['id'=> $user->id ])  }}" class="nav-link {{ Request::routeIs('users.favoritesPost') ? 'active' : '' }}">
+        favoritingPost
+    <span class="bagde bagde-secondary">{{ $user->favoritesPost_count }}</span>        
+        </a>
+        </li>    
+    
+        
 </ul>
