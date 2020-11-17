@@ -13,10 +13,10 @@ class FavoritesController extends Controller
      * @return \Illuminate\Http\Response
      */
      
-    public function store($id)
+    public function store($micropost)
     {
         // 認証済みユーザ（閲覧者）が、 idのユーザをフォローする
-        \Auth::user()->favoriting($id);
+        \Auth::user()->favoriting($micropost);
         // 前のURLへリダイレクトさせる
         return back();
     }
@@ -29,10 +29,10 @@ class FavoritesController extends Controller
      */
      
      
-    public function destroy($id)
+    public function destroy($micropost)
     {
         // 認証済みユーザ（閲覧者）が、 idのユーザをアンフォローする
-        \Auth::user()->unfavoriting($id);
+        \Auth::user()->unfavoriting($micropost);
         // 前のURLへリダイレクトさせる
         return back();
     }

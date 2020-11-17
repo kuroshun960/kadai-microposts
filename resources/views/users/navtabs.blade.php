@@ -14,7 +14,7 @@
     {{-- フォロー一覧タブ --}}                    
     <li class="nav-item">
         <a href="{{ route('users.followings',['id'=> $user->id ])  }}" class="nav-link {{ Request::routeIs('users.followings') ? 'active' : '' }}">
-        Followings
+        Follow
     <span class="bagde bagde-secondary">{{ $user->followings_count }}</span>        
         </a>
         </li>

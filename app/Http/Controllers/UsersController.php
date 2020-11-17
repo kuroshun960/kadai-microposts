@@ -42,7 +42,10 @@ class UsersController extends Controller
             'microposts' => $microposts,
         ]);
         
-
+        return view('microposts.microposts', [
+            'user' => $user,
+            'microposts' => $microposts,
+        ]);
     }
     
     
@@ -107,15 +110,10 @@ class UsersController extends Controller
         // フォロー一覧ビューでそれらを表示
         return view('users.favoritesPost',[
             'user' => $user,
-            'users' => $favoritesPost,
+            'microposts' => $favoritesPost,
             
             ]);
-            
-        return view('commons.navbar',[
-            'user' => $user,
-            'users' => $favoritesPost,
-            
-            ]);
+
         
     }
     
