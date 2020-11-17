@@ -1,7 +1,7 @@
-            <ul class="nav nav-tabs nav-justified mb-3">
+<ul class="nav nav-tabs nav-justified mb-3">
 
                 
-    {{-- ユーザー詳細タブ --}}
+    {{-- タイムラインタブ --}}
     <li class="nav-item">
                     
     {{-- routeIs　リクエスト元のルートがusers.showの場合、タブの文字がactiveになる。参考演算子。 --}}
@@ -31,7 +31,7 @@
     {{-- お気に入り一覧タブ --}}                    
     <li class="nav-item">
         <a href="{{ route('users.favoritesPost',['id'=> $user->id ])  }}" class="nav-link {{ Request::routeIs('users.favoritesPost') ? 'active' : '' }}">
-        favoritingPost
+        Favorites
     <span class="bagde bagde-secondary">{{ $user->favoritesPost_count }}</span>        
         </a>
         </li>    

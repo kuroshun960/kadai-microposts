@@ -108,6 +108,12 @@ class UsersController extends Controller
             'users' => $favoritesPost,
             
             ]);
+            
+        return view('commons.navbar',[
+            'user' => $user,
+            'users' => $favoritesPost,
+            
+            ]);
         
     }
     
