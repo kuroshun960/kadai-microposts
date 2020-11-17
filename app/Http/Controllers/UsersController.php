@@ -41,6 +41,8 @@ class UsersController extends Controller
             'user' => $user,
             'microposts' => $microposts,
         ]);
+        
+
     }
     
     

@@ -30,7 +30,7 @@ class Micropost extends Model
     // 1.モデルのクラス 2.中間テーブル名 3.自分のidとつながってる中間id  4.相手先のidとつながってる中間id
     //この投稿をお気に入りしてるユーザー。（ Micropostモデルとの関係を定義）
     public function favoritesUser(){
-    return $this->belongsToMany(Micropost::class, 'favorites','micropost_id','user_id')->withTimestamps();
+    return $this->belongsToMany(User::class, 'favorites','micropost_id','user_id')->withTimestamps();
     }
     
     

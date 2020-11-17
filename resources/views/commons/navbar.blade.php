@@ -31,8 +31,7 @@
                                 
                                 
                                 <li class="dropdown-item">
-                                <a href="{{ route('users.favoritesPost',['id'=> $user->id ])  }}">
-                                Favorites
+                                <a href="{{ route('users.favoritesPost',['id'=> Auth::user()->id ])  }}">Favorites
                                 </a></li>
                                 
                                 

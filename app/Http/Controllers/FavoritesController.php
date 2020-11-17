@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
 {
-    /**
+    /*
      * ユーザをフォローするアクション。
      *
      * @param  $id  相手ユーザのid
      * @return \Illuminate\Http\Response
      */
+     
     public function store($id)
     {
         // 認証済みユーザ（閲覧者）が、 idのユーザをフォローする
@@ -20,12 +21,14 @@ class FavoritesController extends Controller
         return back();
     }
 
-    /**
+    /*
      * ユーザをアンフォローするアクション。
      *
      * @param  $id  相手ユーザのid
      * @return \Illuminate\Http\Response
      */
+     
+     
     public function destroy($id)
     {
         // 認証済みユーザ（閲覧者）が、 idのユーザをアンフォローする
@@ -33,4 +36,5 @@ class FavoritesController extends Controller
         // 前のURLへリダイレクトさせる
         return back();
     }
+    
 }
