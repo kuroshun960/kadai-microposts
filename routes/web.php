@@ -72,7 +72,7 @@ Route::get('/', 'MicropostsController@index');
             Route::get('followers', 'UsersController@followers')->name('users.followers');
             
             //お気に入り一覧
-            Route::get('favoritesPost', 'UsersController@favoritesPost')->name('users.favoritesPost');
+            Route::get('favoritesPost', 'UsersController@favorites_post')->name('users.favoritesPost');
             
             
         });

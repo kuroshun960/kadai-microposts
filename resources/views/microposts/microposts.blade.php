@@ -20,7 +20,7 @@
 
                 
                 <div class="d-flex flex-row">
-                <div>
+                <div class="mt-2">
                     {{-- 閲覧者が投稿主なら --}}
                     @if(Auth::id() == $micropost->user_id)
                     <div class="mr-2">
@@ -32,13 +32,13 @@
                     @endif
                 </div>
                 
-                <div class=>
+                <div class="mt-2">
                     @if(Auth::id() != $micropost->id)
                         {{--フォロー中のユーザーだったら--}}
                         @if (Auth::user()->is_favoriting($micropost->id))
                             {{-- アンフォローボタンのフォーム --}}
                                 {!! Form::open(['route' => ['favorites.unfavorite', $micropost->id], 'method' => 'delete']) !!}
-                                    {!! Form::submit('Unfavorite', ['class' => "btn btn-danger btn-sm"]) !!}
+                                    {!! Form::submit('Unfavorite', ['class' => "btn btn-secondary btn-sm"]) !!}
                                 {!! Form::close() !!}
                         @else
                             {{-- フォローボタンのフォーム --}}

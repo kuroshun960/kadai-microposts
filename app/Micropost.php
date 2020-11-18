@@ -19,12 +19,7 @@ class Micropost extends Model
     }
     
     
-    
-    //このユーザに関係するモデルの件数をロードする。
-    public function loadRelationshipCounts()
-    {
-        $this->loadCount('microposts');
-    }
+
     
     
     // 1.モデルのクラス 2.中間テーブル名 3.自分のidとつながってる中間id  4.相手先のidとつながってる中間id

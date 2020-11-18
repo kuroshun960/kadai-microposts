@@ -15,11 +15,17 @@ class UsersController extends Controller
         //ユーザー一覧をidの降順で取得
         $users = User::orderBy('id','desc')->paginate(8);
         
+        
+        
+        
         //変数userの中に↑を格納し、users/indexで表示
         return view('users.index',[
            'users' => $users, 
             
         ]);
+        
+        
+        
     }
     
     
@@ -36,6 +42,8 @@ class UsersController extends Controller
         // ユーザの投稿一覧を作成日時の降順で取得
         $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(8);
 
+        if (\Auth::check()) {
+
         // ユーザ詳細ビューでそれらを表示
         return view('users.show', [
             'user' => $user,
@@ -46,6 +54,10 @@ class UsersController extends Controller
             'user' => $user,
             'microposts' => $microposts,
         ]);
+    }
+    
+    return redirect('/');
+    
     }
     
     
@@ -63,12 +75,19 @@ class UsersController extends Controller
         // ユーザのフォロー一覧を取得
         $followings = $user->followings()->paginate(8);
         
+        
+        if (\Auth::check()) {
+        
         // フォロー一覧ビューでそれらを表示
         return view('users.followings',[
             'user' => $user,
             'users' => $followings,
             
             ]);
+            
+        }
+        
+        return redirect('/');
         
     }
     
@@ -83,12 +102,19 @@ class UsersController extends Controller
         
         $followers = $user->followers()->paginate(8);
         
+        
+        
+        if (\Auth::check()) {
+        
         return view('users.followers',[
             'user' => $user,
             'users' => $followers,
             
             ]);
         
+        }
+        
+        return redirect('/');
         
     }
     
@@ -96,7 +122,9 @@ class UsersController extends Controller
     
     //ユーザのお気に入り投稿一覧ページを表示するアクション。
     
-    public function favoritesPost($id){
+    public function favorites_post($id){
+        
+        
         
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
@@ -104,19 +132,30 @@ class UsersController extends Controller
         // 関係するモデルの件数をロード
         $user->loadRelationshipCounts();
         
-        // ユーザのフォロー一覧を取得
-        $favoritesPost = $user->favoritesPost()->paginate(8);
+        // ユーザのお気に入り一覧を取得
+        $microposts = $user->favorites_post()->paginate(8);
         
-        // フォロー一覧ビューでそれらを表示
+        
+        
+        if (\Auth::check()) {
+        
+            // お気に入り一覧ビューでそれらを表示
         return view('users.favoritesPost',[
             'user' => $user,
-            'microposts' => $favoritesPost,
+            'microposts' => $microposts,
+            
+            
             
             ]);
-
-        
+            
     }
     
     
+    return redirect('/');
+    
+    
+        }
+        
+        
     
 }

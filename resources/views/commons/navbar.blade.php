@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#6a8fb3 ;">
         {{-- トップページへのリンク --}}
         <a class="navbar-brand" href="/">Microposts</a>
         

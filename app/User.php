@@ -53,7 +53,7 @@ class User extends Authenticatable
         }
 
         public function loadRelationshipCounts(){
-            $this->loadCount('microposts', 'followings', 'followers');
+            $this->loadCount('favorites_post','microposts', 'followings', 'followers');
         }
         
 /*////////////////////////////////////////////////
@@ -153,7 +153,7 @@ class User extends Authenticatable
         
     // 1.モデルのクラス 2.中間テーブル名 3.自分のidとつながってる中間id  4.相手先のidとつながってる中間id
     //このユーザがお気に入りしてる投稿。（ Micropostモデルとの関係を定義）
-        public function favoritesPost(){
+        public function favorites_post(){
         return $this->belongsToMany(Micropost::class, 'favorites','user_id','micropost_id')->withTimestamps();
         }
         
@@ -183,7 +183,7 @@ class User extends Authenticatable
             }else{
                 
                 //お気に入りしてなければお気に入りする
-                $this->favoritesPost()->attach($micropost);
+                $this->favorites_post()->attach($micropost);
                 return true;
             }
         }
@@ -202,7 +202,7 @@ class User extends Authenticatable
             if($exist && !$its_me){
             
                 // すでにお気に入りしてる投稿ならばフォローを外す
-                $this->favoritesPost()->detach($micropost);
+                $this->favorites_post()->detach($micropost);
                 return true;
                 
             }else{
@@ -225,13 +225,13 @@ class User extends Authenticatable
         public function is_favoriting($micropost){
 
             // お気に入りしてる投稿の中に $micropostのものが存在するか
-            return $this->favoritesPost()->where('micropost_id',$micropost)->exists();
+            return $this->favorites_post()->where('micropost_id',$micropost)->exists();
         }
         
         
         public function feed_favoritesPost(){
             // このユーザがフォロー中のユーザのidを取得して配列にする
-            $microposts = $this->favoritesPost()->pluck('users.id')->toArray();
+            $microposts = $this->favorites_post()->pluck('users.id')->toArray();
             // このユーザのidもその配列に追加
             $microposts[] = $this->id;
             // それらのユーザが所有する投稿に絞り込む
